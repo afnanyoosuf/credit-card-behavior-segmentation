@@ -156,3 +156,12 @@ plt.savefig('pca_visualization.png')
 df_engineered.to_csv('processed.csv',index=False)
 print("Processed data saved to data/processed/ folder!")
 
+"""### Feature Engineering Decisions
+- **MONTHLY_AVG_PURCHASE** — actual spending per month normalized by tenure
+- **MONTHLY_AVG_CASH_ADVANCE** — cash dependency per month
+- **PURCHASE_TO_LIMIT_RATIO** — how actively credit limit is used for purchases
+- **CASH_ADVANCE_TO_LIMIT_RATIO** — cash advance dependency relative to limit
+- **BALANCE_TO_LIMIT_RATIO** — how leveraged the customer is
+- **PCA** applied to 2 components for visualization purposes only
+"""
+
