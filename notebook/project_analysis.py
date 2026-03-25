@@ -410,5 +410,16 @@ to activate them
 - Offer **Active Purchasers** loyalty rewards and cashback programs
 - Provide **Cash Advance Users** with debt management products
 - Give **High Value Customers** premium services and exclusive cards
+
+## Pipeline and Final Run
+
+Running the complete pipeline end to end using pipeline.py
 """
+
+from pipeline import run_full_pipeline
+
+df_result, model, scaler = run_full_pipeline(
+    data_path='CC GENERAL.csv',
+    n_clusters=4
+)
 
