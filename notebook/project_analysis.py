@@ -96,9 +96,6 @@ In this section we clean the raw dataset by:
 - Capping outliers
 """
 
-import sys
-sys.path.append('../src')
-
 from preprocessing import preprocess_pipeline, scale_features
 from feature_engineering import create_derived_features, apply_pca
 
@@ -289,7 +286,7 @@ plt.title('Number of Customers per Cluster')
 plt.xlabel('Cluster')
 plt.ylabel('Number of Customers')
 plt.tight_layout()
-plt.savefig(r'/content/C:\Users\user\OneDrive\Desktop\ML\Credit Card\outputs\reports\cluster_sizes.png')
+plt.savefig(r'C:\Users\user\OneDrive\Desktop\ML\Credit Card\outputs\reports\cluster_sizes.png')
 
 # Compare clusters on most important features
 key_features = [
@@ -315,7 +312,7 @@ for i, feature in enumerate(key_features):
 
 plt.suptitle('Feature Comparison Across Clusters', fontsize=14)
 plt.tight_layout()
-plt.savefig(r'/content/C:\Users\user\OneDrive\Desktop\ML\Credit Card\outputs\reports\cluster_feature_comparison.png')
+plt.savefig(r'C:\Users\user\OneDrive\Desktop\ML\Credit Card\outputs\reports\cluster_feature_comparison.png')
 plt.show()
 
 # Normalize for better visualization
@@ -339,7 +336,7 @@ plt.savefig(r'C:\Users\user\OneDrive\Desktop\ML\Credit Card\outputs\reports\clus
 
 for c in sorted(df_engineered['Cluster'].unique()):
   cluster_data = df_engineered[df_engineered['Cluster'] == c]
-  print(f"{'='} * 50")
+  print(f"{'='*50}")
   print(f"CLUSTER {c}")
   print(f"{'=' * 50}")
   print(f"size:{len(cluster_data)}customers")
@@ -383,7 +380,7 @@ for c in sorted(df_engineered['Cluster'].unique()):
 """
 
 df_engineered['Cluster_Label'] = df_engineered['Cluster'].map({0:'Inactive Users',1:'Active Purchasers',2 : 'Cash Advance Users',3 : 'High Value Customers'})
-df_engineered.to_csv('dataset_with_clusters.csv')
+df_engineered.to_csv('dataset_with_clusters.csv',index=False)
 print('Final dataset saved')
 print()
 print(df_engineered['Cluster_Label'].value_counts())
