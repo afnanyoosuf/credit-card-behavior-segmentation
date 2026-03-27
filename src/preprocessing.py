@@ -13,48 +13,60 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 def load_data(path):
+    """Load the CSV dataset from the given file path."""
     df = pd.read_csv(path)
     return df
 
+
 def remove_unnecessary_columns(df):
-    # CUST_ID is just an identifier not useful for clustering
+    """Drop CUST_ID — it is just an identifier, not useful for clustering."""
     df = df.drop('CUST_ID', axis=1)
     return df
 
+
 def handle_missing_values(df):
-    # Using median because data is skewed with outliers
-    # Median is not affected by extreme values unlike mean
+    """Fill missing values with median.
+    Median is used because data is right-skewed — mean would be misleading."""
     df['MINIMUM_PAYMENTS'].fillna(df['MINIMUM_PAYMENTS'].median(), inplace=True)
     df['CREDIT_LIMIT'].fillna(df['CREDIT_LIMIT'].median(), inplace=True)
     return df
 
+
 def handle_outliers(df):
-    # Columns with heavy outliers detected during EDA
+    """Cap outliers using IQR method.
+    Values beyond [Q1 - 1.5*IQR, Q3 + 1.5*IQR] are clipped.
+    Capping is preferred over deletion to keep all 8950 customers."""
     outliers_cols = [
-        'BALANCE', 'PURCHASES', 'CASH_ADVANCE',
-        'CREDIT_LIMIT', 'PAYMENTS', 'MINIMUM_PAYMENTS',
-        'PURCHASES_TRX', 'CASH_ADVANCE_TRX', 'TENURE'
+        'BALANCE', 'PURCHASES', 'CASH_ADVANCE', 'CREDIT_LIMIT',
+        'PAYMENTS', 'MINIMUM_PAYMENTS', 'PURCHASES_TRX',
+        'CASH_ADVANCE_TRX', 'TENURE'
     ]
+
     for col in outliers_cols:
         Q1 = df[col].quantile(0.25)
         Q3 = df[col].quantile(0.75)
         IQR = Q3 - Q1
         lower = Q1 - 1.5 * IQR
         upper = Q3 + 1.5 * IQR
-        # Cap values instead of removing
         df[col] = df[col].clip(lower=lower, upper=upper)
-    return df  # ✅ outside the loop
+
+    return df  #  Fixed: was indented inside the for loop (only processed 1 column)
+
 
 def scale_features(df):
+    """Standardise all features to mean=0, std=1.
+    Required for K-Means so no single feature dominates due to large range."""
     scaler = StandardScaler()
     scaled_array = scaler.fit_transform(df)
     scaled_df = pd.DataFrame(scaled_array, columns=df.columns)
     return scaled_df, scaler
 
+
 def preprocess_pipeline(path):
+    """Master function — runs all preprocessing steps in order."""
     df = load_data(path)
-    df = remove_unnecessary_columns(df)   # Step 1 - drop CUST_ID
-    df = handle_missing_values(df)         # Step 2 - fill nulls
-    df = handle_outliers(df)               # Step 3 - cap outliers
+    df = remove_unnecessary_columns(df)
+    df = handle_missing_values(df)
+    df = handle_outliers(df)
     return df
 
