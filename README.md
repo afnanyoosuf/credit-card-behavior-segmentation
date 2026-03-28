@@ -1,3 +1,4 @@
+%%writefile /content/README.md
 
 # Credit Card Customer Segmentation
 ## Unsupervised Machine Learning Project
@@ -20,27 +21,25 @@ on their spending behavior and financial patterns.
 ---
 
 ## Project Structure
-```
 project/
 ├── data/
-│   ├── raw/                        ← Original dataset
-│   └── processed/                  ← Cleaned dataset
+│   ├── raw/                        
+│   └── processed/                  
 ├── notebooks/
-│   └── project_analysis.ipynb      ← Main analysis notebook
+│   └── project_analysis.ipynb      
 ├── src/
-│   ├── preprocessing.py            ← Data cleaning functions
-│   ├── feature_engineering.py      ← Feature creation functions
-│   ├── clustering.py               ← Clustering algorithms
-│   ├── evaluation.py               ← Evaluation metrics
-│   └── pipeline.py                 ← Full pipeline
+│   ├── preprocessing.py            
+│   ├── feature_engineering.py      
+│   ├── clustering.py               
+│   ├── evaluation.py               
+│   └── pipeline.py                 
 ├── outputs/
-│   ├── models/                     ← Saved models
-│   ├── clusters/                   ← Final dataset with labels
-│   └── reports/                    ← All plots and graphs
+│   ├── models/                     
+│   ├── clusters/                   
+│   └── reports/                    
 ├── requirements.txt
 ├── README.md
 └── main.py
-```
 
 ---
 
@@ -51,6 +50,7 @@ project/
 - Task 4 - Clustering (KMeans + Hierarchical)
 - Task 5 - Cluster Evaluation
 - Task 6 - Cluster Interpretation
+- Bonus  - Power BI Dashboard
 
 ---
 
@@ -77,17 +77,37 @@ project/
 
 ---
 
+## Bonus — Power BI Dashboard
+A Power BI dashboard was created to explore cluster insights visually.
+
+### Dashboard Contains
+- KPI Cards showing customer count per cluster
+- Pie Chart showing cluster distribution
+- Bar Chart showing average balance per cluster
+- Bar Chart showing average purchases per cluster
+- Scatter Plot showing cash advance vs purchases
+- Bar Chart showing credit limit per cluster
+- Bar Chart showing full payment rate per cluster
+- Interactive Slicer to filter by cluster label
+
+### Dashboard File
+- CreditCardClusterDashboard.pbix
+
+### Key Dashboard Insights
+- High Value Customers have highest credit limit and full payment rate
+- Cash Advance Users have highest cash advance and lowest purchases
+- Active Purchasers show highest purchase amounts
+- Inactive Users show low activity across all metrics
+
+---
+
 ## How to Run
 
 ### Install requirements
-```
 pip install -r requirements.txt
-```
 
 ### Run the project
-```
 python main.py
-```
 
 ---
 
@@ -95,6 +115,7 @@ python main.py
 - Complete project folder with structured code
 - Documented notebook with analysis
 - dataset_with_clusters.csv
+- CreditCardClusterDashboard.pbix (Bonus)
 
 ---
 
