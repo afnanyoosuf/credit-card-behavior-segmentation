@@ -420,3 +420,23 @@ df_result, model, scaler = run_full_pipeline(
     n_clusters=4
 )
 
+"""## Bonus — Power BI Dashboard
+
+A Power BI dashboard was created to explore cluster insights visually.
+
+### Dashboard Contains:
+- Cluster distribution pie chart
+- Average balance per cluster
+- Average purchases per cluster
+- Cash advance vs purchases scatter plot
+- Credit limit comparison
+- Full payment rate by cluster
+- Interactive slicers to filter by cluster
+
+### Key Dashboard Insights:
+- High Value Customers have highest credit limit and full payment rate
+- Cash Advance Users have highest cash advance and lowest purchases
+- Active Purchasers show highest purchase amounts
+- Inactive Users show low activity across all metrics
+"""
+
